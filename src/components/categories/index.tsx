@@ -1,5 +1,22 @@
-import { View } from "react-native-reanimated/lib/typescript/Animated";
+import { View, FlatList } from "react-native";
 
-export function Categories(){
-    return <View></View>
+import { Category } from "../category";
+
+export type CategoriesProps = {
+  id: string;
+  name: string;
+}[];
+
+type Props = {
+  data: CategoriesProps;
+};
+
+export function Categories({ data }: Props) {
+  return (
+    <FlatList
+      data={data}
+      keyExtractor={(item) => item.id}
+      renderItem={({ item }) => <Category name={item.name} iconId={item.id} />}
+    ></FlatList>
+  );
 }
